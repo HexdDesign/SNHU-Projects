@@ -1,0 +1,33 @@
+/*
+ Amber Haywood
+ IT-145
+ */
+
+package moduletwo;
+// Cat class extends from Pet class
+public class Cat extends Pet {
+//  number of space for a pet cat available
+	private int catSpaceNumber; 
+	
+// main constructor for Cat
+	public Cat() {
+		catSpaceNumber = 0;
+	}
+// Setter
+	// Set space number for cat
+	public void setCatSpaceNumber (int spaceNumber) {
+		this.catSpaceNumber = spaceNumber;
+	}
+	
+// Getter
+	// Get space number for cat
+	public int getCatSpaceNumber () {
+		return catSpaceNumber;
+	}
+	
+// Output 
+	// Prints available number of spaces for cats available
+	public void printDCat() {
+		System.out.print("Space Number:" + catSpaceNumber);
+	}
+	}
