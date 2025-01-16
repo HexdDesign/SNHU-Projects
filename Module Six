@@ -1,0 +1,35 @@
+#Amber Haywood 
+#Module six milestone assignment
+#A dictionary for the simplified dragon text game
+#The dictionary links a room to other rooms.
+rooms = {
+        'Great Hall': {'South': 'Bedroom'},
+        'Bedroom': {'North': 'Great Hall', 'East': 'Cellar'},
+        'Cellar': {'West': 'Bedroom'}
+    }
+
+#Displays current room to user
+def user_status():
+    print('You are in the {}'.format(current_room))
+
+current_room = 'Great Hall'
+user_move = ''
+#Exit game
+while current_room != 'Exit':
+    user_status()
+    user_move = input('Enter your move: ').title()
+    if user_move == 'Exit':
+        current_room = 'Exit'
+    else:
+        #Move between rooms and display output
+        if user_move in rooms[current_room]:
+            current_room = rooms[current_room][user_move]
+            if current_room == 'Great Hall':
+                print('You moved into the Great Hall room.')
+            elif current_room == 'Cellar':
+                print('You moved into the Cellar room. Go back to the Great Hall.')
+        else:
+            #Invalid input from user
+            print("Invalid move.")
+#Print output exiting the game
+print('Goodbye!')
