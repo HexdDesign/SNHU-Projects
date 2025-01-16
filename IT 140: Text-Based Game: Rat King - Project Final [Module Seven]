@@ -1,0 +1,52 @@
+# Amber Haywood
+#IT 140 Text-Based Game
+#Project Final
+
+def instructions():        # print instructions and commands to player
+    print(' ') #Spacing
+    print('Welcome to the Rat King Text Based Game') #The title of the game
+    print(' ') #Spacing
+    print('Hello hero! Welcome to the underground subway! You have arrived in the subway at the Inbound Train Station!')
+    print('You must search for the Rat King...') # Instructions
+    print('But first, collect all 6 items needed to defeat him!')
+    print('Move commands: goSouth, goNorth, goEast, goWest') #Display move commands to player
+    print("Add to inventory: Type 'item' to obtain items") #Display inventory commands to player
+    print("Type x to exit")#Display how to exit game to player
+
+# A Dictionary connecting rooms
+rooms = {
+        'Inbound Train': {'South': 'Inbound Ticket Office', 'North': 'Outbound Ticket Office', 'East': 'Fast Food Restaurant', 'West': 'Outbound Train', 'item': 'none'},
+        'Inbound Ticket Office': {'North': 'Inbound Train', 'East': 'Retail Beauty Store', 'item': 'Shield'},
+        'Retail Beauty Store': {'West': 'Inbound Ticket Office', 'item': 'Mana Lotion'},
+        'Fast Food Restaurant': {'North': 'Restroom', 'West': 'Inbound Train', 'item': 'Hamburger'},
+        'Restroom': {'South': 'Fast Food Restaurant', 'item': 'Revive'},
+        'Outbound Ticket Office': {'East': 'Retail Toy Store', 'South': 'Inbound Train', 'item': 'Sword'},
+        'Retail Toy Store': {'West': 'Outbound Ticket Office', 'item': 'Magic Staff'},
+        'Outbound Train': {'East': 'Inbound Train', 'item': 'Rat King'}  # Villain room or end
+}
+
+inventory = []  # Inventory that can be filled as player moves from room to room
+current_room = 'Inbound Train'  # Starting room
+
+while True:
+    print('You are in the:', current_room, '\n', "Inventory:", 'inventory') #Shows player current room
+    if 'item' in rooms[current_room]:
+        print("You see: " + rooms[current_room]['item'])
+    if len(inventory) != 6 and current_room == 'Outbound Train': #If user collects all items before entering
+        print('You have entered the Outbound Train Station..')
+        print('You see the Rat King..')
+        print('You do not have all 6 items needed!')
+        print(' ')
+        print('Game Over. Try again?')
+        break
+    command = input("What is your move?").title()
+    print(f"{command=}")
+    if command in rooms[current_room]:
+         current_room = rooms[current_room][command]
+    elif command.title() == str('get' + (rooms[current_room]['item'])):
+         if rooms[current_room]['item'] in inventory:
+              print('You already have this item.')
+    else:
+              inventory.append(rooms[current_room]['item'])
+else :
+    print('Invalid command. Try again.')
