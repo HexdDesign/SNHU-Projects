@@ -1,0 +1,50 @@
+#Instructions
+(1) Prompt the user to input an integer between 32 and 126, a float, a character, and a string, storing each into separate variables. Then, output those four values on a single line separated by a space.
+Enter integer (32 - 126):
+99
+Enter float:
+3.77
+Enter character:
+z
+Enter string:
+Howdy
+99 3.77 z Howdy
+(2) Extend to also output in reverse. 
+Enter integer (32 - 126):
+99
+Enter float:
+3.77
+Enter character:
+z
+Enter string:
+Howdy
+99 3.77 z Howdy
+Howdy z 3.77 99
+(3) Extend to convert the integer to a character by using the 'chr()' function, and output that character.
+Enter integer (32 - 126):
+99
+Enter float:
+3.77
+Enter character:
+z
+Enter string:
+Howdy
+99 3.77 z Howdy
+Howdy z 3.77 99
+99 converted to a character is c
+
+
+#Code Begins
+
+user_int = int(input('Enter integer (32 - 126):\n'))
+user_float = float(input('Enter float:\n'))
+
+user_char = input('Enter character:\n')
+
+user_str = input('Enter string:\n')
+
+print(user_int, user_float, user_char, user_str)
+
+print(user_str, user_char, user_float, user_int)
+
+print(user_int,'converted to a character is',chr(user_int))
