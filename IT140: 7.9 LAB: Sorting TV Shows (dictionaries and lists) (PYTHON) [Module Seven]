@@ -1,0 +1,129 @@
+#Instructions
+Write a program that first reads in the name of an input file and then reads the input file using the file.readlines() method. The input file contains an unsorted list of number of seasons followed by the corresponding TV show. Your program should put the contents of the input file into a dictionary where the number of seasons are the keys, and a list of TV shows are the values (since multiple shows could have the same number of seasons).
+Sort the dictionary by key (least to greatest) and output the results to a file named output_keys.txt, separating multiple TV shows associated with the same key with a semicolon (;). Next, sort the dictionary by values (alphabetical order), and output the results to a file named output_titles.txt.
+Ex: If the input is:
+file1.txt
+and the contents of file1.txt are:
+20
+Gunsmoke
+30
+The Simpsons
+10
+Will & Grace
+14
+Dallas
+20
+Law & Order
+12
+Murder, She Wrote
+the file output_keys.txt should contain:
+10: Will & Grace
+12: Murder, She Wrote
+14: Dallas
+20: Gunsmoke; Law & Order
+30: The Simpsons
+and the file output_titles.txt should contain:
+Dallas
+Gunsmoke
+Law & Order
+Murder, She Wrote
+The Simpsons
+Will & Grace
+Note: There is a newline at the end of each output file, and file1.txt is available to download.
+
+#Code Begins
+def read_file(file):
+
+        d1 = {}
+
+        with open(file, 'r',encoding='utf-8') as infile:
+
+            lines = infile.readlines()
+
+            for index in range(0, len(lines) - 1, 2):
+
+                if lines[index].strip() == '':
+
+                    continue
+
+                cnt = int(lines[index].strip())
+
+                shw = lines[index + 1].strip()
+
+                if cnt in d1.keys():
+
+                    sh_list = d1.get(cnt)
+
+                    sh_list.append(shw)
+
+                else:
+
+                    d1[cnt] = [shw]
+
+        return d1
+
+
+def out_key(d1, filename):
+
+        with open(filename, 'w+') as q:
+
+            for key in sorted(d1.keys()):
+
+                q.write('{}: {}\n'.format(key, '; '.join(d1.get(key))))
+
+
+
+                print('{}: {}'.format(key, '; '.join(d1.get(key))))
+
+
+
+def out_title(d1, filename):
+
+        ttl = []
+
+
+
+        for title in d1.values():
+
+            ttl.extend(title)
+
+
+
+        with open(filename, 'w+') as outfile:
+
+
+
+            for title in sorted(ttl):
+
+                outfile.write('{}\n'.format(title))
+
+                print(title)
+
+
+def main(x):
+
+        
+        f_name = x
+
+        d1 = read_file(f_name)
+
+        if d1 is None:
+
+            print('Error: Entered file does not exist!: {}'.format(f_name))
+
+            return
+
+        out_file1 = 'output_keys.txt'
+
+        out_file2 = 'output_titles.txt'
+
+        out_key(d1, out_file1)
+
+        out_title(d1, out_file2)
+
+
+
+print('Entere input file name: ')
+user_input = input()
+
+main(user_input)
