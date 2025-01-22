@@ -1,0 +1,22 @@
+#Instructions
+Calories = ( (Age x 0.2757) + (Weight x 0.03295) + (Heart Rate x 1.0781) — 75.4991 ) x Time / 8.368
+Write a program using inputs age (years), weight (pounds), heart rate (beats per minute), and time (minutes), respectively. Output the average calories burned for a person.
+Output each floating-point value with two digits after the decimal point, which can be achieved as follows:
+print('Calories: {:.2f} calories'.format(calories))
+Ex: If the input is:
+49
+155
+148
+60
+then the output is:
+Calories: 736.21 calories
+
+#Code Begins
+Age=float(input())
+Weight=float(input())
+Heart_Rate=float(input())
+Time=float(input())
+
+Calories = float((Age * 0.2757) + (Weight * 0.03295) + (Heart_Rate * 1.0781) - 75.4991) * Time / 8.368
+
+print('Calories: {:.2f} calories'.format(Calories))
