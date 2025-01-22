@@ -1,0 +1,24 @@
+#Instructions
+Given a line of text as input, output the number of characters excluding spaces, periods, or commas.
+Ex: If the input is:
+Listen, Mr. Jones, calm down.
+the output is:
+21
+Note: Account for all characters that aren't spaces, periods, or commas (Ex: "r", "2", "!").
+
+#Code Begins
+user_text = input()
+
+comma_count = 0
+period_count = 0
+space_count = 0
+for char in user_text:
+    initial_len = len(user_text)
+    if char == ',':
+        comma_count += 1
+    elif char == '.':
+        period_count += 1
+    elif char == ' ':
+        space_count += 1
+not_allowed = (comma_count + period_count + space_count)
+print(initial_len - not_allowed)
